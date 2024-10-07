@@ -176,3 +176,19 @@ Output vsftpd log through STDOUT, so that it can be accessed through the [contai
 
 Default value: `NO`  
 Accepted values: < `NO` | `YES` >
+
+
+### `MAX_PER_IP`
+The MAX_PER_IP setting in VSFTPD limits the number of simultaneous connections from a single IP address. A value of 0 allows unlimited connections from any one IP.
+
+Default value: `5`  
+Accepted values: Any positing integer or 0
+
+
+### `MAX_CLIENTS`
+The MAX_CLIENTS setting in VSFTPD limits the number of simultaneous connections. A value of 0 allows unlimited connections.
+
+Default value: `10`  
+Accepted values: Any positing integer or 0
+
+Note that limit multiple connections from same IP(`MAX_PER_IP`) count towards `MAX_CLIENTS`.

@@ -11,6 +11,8 @@ PASV_MIN_PORT=${PASV_MIN_PORT:-21100}
 PASV_MAX_PORT=${PASV_MAX_PORT:-21110}
 FTP_MODE=${FTP_MODE:-ftp}
 LOG_STDOUT=${LOG_STDOUT:-NO}
+MAX_PER_IP=${MAX_PER_IP:-5}
+MAX_CLIENTS=${MAX_CLIENTS:-10}
 
 # You can set PASV_ADDRESS_INTERFACE to the name of the interface you'd like to
 # bind to and this will look up the IP and set the proper PASV_ADDRESS value.
@@ -59,6 +61,8 @@ echo "pasv_address=$PASV_ADDRESS" >> $VSFTPD_CONF
 echo "pasv_addr_resolve=$PASV_ADDR_RESOLVE" >> $VSFTPD_CONF
 echo "pasv_max_port=$PASV_MAX_PORT" >> $VSFTPD_CONF
 echo "pasv_min_port=$PASV_MIN_PORT" >> $VSFTPD_CONF
+echo "max_per_ip=$MAX_PER_IP" >> $VSFTPD_CONF
+echo "max_clients=$MAX_CLIENTS" >> $VSFTPD_CONF
 
 # Get log file path
 export LOG_FILE=`grep ^vsftpd_log_file $VSFTPD_CONF | cut -d= -f2`
@@ -84,6 +88,8 @@ cat << EOB
   . FTP_MODE: "${FTP_MODE}"
   . LOG_STDOUT: "${LOG_STDOUT}"
   . LOG_FILE: "${LOG_FILE}"
+  . MAX_PER_IP: "${MAX_PER_IP}"
+  . MAX_CLIENTS: "${MAX_CLIENTS}"
 EOB
 
 if [[ "${LOG_STDOUT}" == "YES" ]]; then
